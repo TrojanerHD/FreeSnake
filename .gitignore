@@ -5,3 +5,4 @@ android/
 *.apk
 *.apk.idsig
 .vscode/settings.json
+.history/
