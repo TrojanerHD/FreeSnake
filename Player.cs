@@ -7,6 +7,8 @@ public class Player : Godot.Line2D {
     [Export] public bool invincible = false;
     private float time = 0;
     private bool paused = false;
+    public int pendingTiles = 0;
+    private float timePendingTiles = 0;
     // Declare member variables here. Examples:
     // private int a = 2;
     // private string b = "text";
@@ -33,15 +35,25 @@ public class Player : Godot.Line2D {
         }
         if (GetPointCount() == 0) return;
         time += delta;
+        timePendingTiles += delta;
         if (time > timeout) {
             for (int i = 0; i < GetPointCount() - 1; i++)
                 SetPointPosition(i, GetPointPosition(i + 1));
             time = 0;
         }
+        if (timePendingTiles > 0.05 && pendingTiles > 0) {
+            pendingTiles--;
+            AddPoint(Points[0], 0);
+            if (GetPointCount() > 1000) {
+                for (int i = 0; i < GetPointCount(); i += 2) RemovePoint(i);
+                timeout *= 2;
+            }
+            timePendingTiles = 0;
+        }
         Vector2 mousePos = GetGlobalMousePosition();
         Vector2 velocity = Points[GetPointCount() - 1].DirectionTo(mousePos);
 
-        SetPointPosition(GetPointCount() - 1, GetPointPosition(GetPointCount() - 1) + velocity * speed * delta );
+        SetPointPosition(GetPointCount() - 1, GetPointPosition(GetPointCount() - 1) + velocity * speed * delta);
     }
 
     private bool FindIntersections() {

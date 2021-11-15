@@ -6,3 +6,4 @@ android/
 *.apk.idsig
 .vscode/settings.json
 .history/
+output.mlpd

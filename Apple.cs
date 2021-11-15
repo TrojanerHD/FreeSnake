@@ -17,12 +17,7 @@ public class Apple : StaticBody2D {
     public override void _Process(float delta) {
         Player player = (Player)GetNode("/root/Game/Player");
         if (player.Points[player.GetPointCount() - 1].DistanceTo(Position) < Scale.x * 2) {
-            for (int i = 0; i < 50; i++)
-                player.AddPoint(player.Points[0], 0);
-            if (player.GetPointCount() > 1000) {
-                for (int i = 0; i < player.GetPointCount(); i += 2) player.RemovePoint(i);
-                player.timeout *= 2;
-            }
+            player.pendingTiles += 50;
             RandomizePosition();
         }
     }
