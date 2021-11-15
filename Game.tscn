@@ -14,6 +14,7 @@ polygon = PoolVector2Array( 1024, 0, 1024, 600, 0, 600, 0, 0 )
 points = PoolVector2Array( 0, 0, 0, 0 )
 default_color = Color( 0, 0.611765, 0.0509804, 1 )
 script = ExtResource( 1 )
+timeout = 0.02
 
 [node name="Apple" type="StaticBody2D" parent="."]
 scale = Vector2( 10, 10 )
