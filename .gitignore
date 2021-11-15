@@ -1,0 +1,7 @@
+export_presets.cfg
+android/
+.mono/
+.import/
+*.apk
+*.apk.idsig
+.vscode/settings.json

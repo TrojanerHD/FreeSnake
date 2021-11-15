@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Player.cs" type="Script" id=1]
+[ext_resource path="res://Apple.cs" type="Script" id=2]
+
+[node name="Game" type="Node2D"]
+
+[node name="Background" type="Polygon2D" parent="."]
+position = Vector2( 1, 0 )
+color = Color( 0, 0, 0, 1 )
+polygon = PoolVector2Array( 1024, 0, 1024, 600, 0, 600, 0, 0 )
+
+[node name="Player" type="Line2D" parent="."]
+points = PoolVector2Array( 0, 0, 0, 0 )
+default_color = Color( 0, 0.611765, 0.0509804, 1 )
+script = ExtResource( 1 )
+
+[node name="Apple" type="StaticBody2D" parent="."]
+scale = Vector2( 10, 10 )
+script = ExtResource( 2 )
+
+[node name="AppleCollision" type="CollisionPolygon2D" parent="Apple"]
+polygon = PoolVector2Array( -2.04986, 1.96233, 1.98935, 1.92922, 1.95624, -1.94445, -1.98364, -2.01066 )
+
+[node name="AppleTexture" type="Polygon2D" parent="Apple"]
+color = Color( 0.752941, 0.0313726, 0.0313726, 1 )
+polygon = PoolVector2Array( -2, -2, 2, -2, 2, 2, -2, 2 )
